@@ -14,26 +14,27 @@ const DOMAIN_MODULES  = [
   }
 ];
 
-const SRC_DIR        = 'src';
-const APP_DIR        = 'app';
-const LOG_DIR        = 'logs';
-const TEST_DIR       = 'test';
-const HAPPYPACK_DIR  = '.happypack';
-const WEBPACK_DIR    = '.webpack_cache';
-const COMMON_DIR     = 'common';
+const SRC_DIR         = 'src';
+const APP_DIR         = 'app';
+const LOG_DIR         = 'logs';
+const TEST_DIR        = 'test';
+const HAPPYPACK_DIR   = '.happypack';
+const WEBPACK_DIR     = '.webpack_cache';
+const COMMON_DIR      = 'common';
 
-const DIST_DIR       = 'dist';
+const DIST_DIR        = 'dist';
 
-const ROOT_PATH      = path.join(__dirname, '../');
-const SRC_PATH       = path.resolve(ROOT_PATH, SRC_DIR);
-const APP_PATH       = path.resolve(ROOT_PATH, SRC_DIR, APP_DIR);
+const ROOT_PATH       = path.join(__dirname, '../');
+const SRC_PATH        = path.resolve(ROOT_PATH, SRC_DIR);
+const APP_PATH        = path.resolve(ROOT_PATH, SRC_DIR, APP_DIR);
 
-const HAPPYPACK_PATH = path.join(ROOT_PATH, HAPPYPACK_DIR);
-const WEBPACK_PATH   = path.join(ROOT_PATH, WEBPACK_DIR);
+const HAPPYPACK_PATH  = path.join(ROOT_PATH, HAPPYPACK_DIR);
+const WEBPACK_PATH    = path.join(ROOT_PATH, WEBPACK_DIR);
 const DIST_PATH       = path.join(ROOT_PATH, DIST_DIR);
+const LOG_PATH        = path.join(ROOT_PATH, LOG_DIR);
 
-const ROOT_COMMON    = path.join(ROOT_PATH, COMMON_DIR);
-const APP_COMMON     = path.join(ROOT_PATH, APP_PATH);
+const ROOT_COMMON     = path.join(ROOT_PATH, COMMON_DIR);
+const APP_COMMON      = path.join(ROOT_PATH, APP_PATH);
 
 module.exports = {
   DLIENT_PORT,
@@ -52,6 +53,7 @@ module.exports = {
   HAPPYPACK_PATH,
   WEBPACK_PATH,
   DIST_PATH,
+  LOG_PATH,
   ROOT_COMMON,
   APP_COMMON,
 };
