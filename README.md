@@ -19,10 +19,19 @@ $ n use stable
 
 # 使用淘宝源 或 cnpm 源
 $ nrm use taobao
+$ 或
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
-# 安装 node_modules
+# (npm、cnpm)安装 node_modules
 $ cd /path/to/project
-$ npm install
+$ npm install 或 cnpm install
+
+# yarn 方式安装node_modules
+$ 1、npm install yarn -g 或者 cnpm install yarn -g
+$ 2、yarn
+
+# yarn安装依赖包
+$ yarn add xxx --dev
 ```
 
 #### Nginx 配置文件导入
@@ -41,6 +50,8 @@ $ echo "include /path/to/project/vhosts/nginx.conf;" >> /path/to/nginx/nginx.con
 $ sudo service nginx restart
 # OSX
 $ sudo brew services restart nginx
+# windos
+$ nginx -s reload
 ```
 
 ## 代码编译与发布
