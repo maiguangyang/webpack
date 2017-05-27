@@ -12,7 +12,8 @@
 
       location / {
         add_header Cache-Control "no-store, no-cache, private";
-        index  index.html index.htm;
+        try_files $uri /{{{domain path}}}.html;
+        proxy_pass http://127.0.0.1:{{ ../proxyPort }}/{{{domain path}}}.html;
       }
 
       location ~* /(.*)$ {

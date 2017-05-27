@@ -81,8 +81,9 @@ const OUTPUT_FILE = path.join(ROOT_PATH, 'vhosts/nginx.conf');
 let template = fs.readFileSync(TMPL_FILE, 'utf-8');
 let fn       = handlebars.compile(template);
 
-let exists = [];
-let datas  = DOMAIN_MODULES
+let exists  = [];
+let entries = [];
+let datas   = DOMAIN_MODULES
 .filter((row) => {
   if (-1 !== _.indexOf(exists, row.domain)) {
     console.error(`Module ${row.domain} is already exists.`.red);
@@ -98,12 +99,9 @@ let datas  = DOMAIN_MODULES
   return true;
 })
 .map((row) => {
-  if (_.isArray(row.entries)) {
-    return Object.assign({}, row, {
-      division: row.entries.join('|'),
-    });
+  if (!_.isEmpty(row.path)) {
+    entries.push(row.path);
   }
-
   return row;
 });
 
@@ -114,6 +112,7 @@ let source = fn({
   buildDir  : DIST_PATH.replace(/\\/gi, '/'),
   assetsDir : DIST_PATH.replace(/\\/gi, '/'),
   logsDir   : LOG_PATH.replace(/\\/gi, '/'),
+  division  : entries.join('|'),
   modules   : datas,
 });
 
