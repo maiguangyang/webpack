@@ -62,6 +62,10 @@ const config = {
         include   : APP_PATH,
       },
       {
+        test      : /\.(png|jpg|gif)$/,
+        use       : 'url-loader?limit=10000&name=[hash:8].[name].[ext]'
+      },
+      {
         test    : /\.(js|jsx)$/,
         use     : ['HappyPack/loader?id=js', 'eslint-loader'],
         exclude : /node_modules/,
