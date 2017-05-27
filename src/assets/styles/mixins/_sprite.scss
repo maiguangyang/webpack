@@ -1,0 +1,66 @@
+
+    $logo-name         : 'sp-logo';
+    $logo-x            : 0px;
+    $logo-y            : 0px;
+    $logo-offset-x     : 0px;
+    $logo-offset-y     : 0px;
+    $logo-width        : 160px;
+    $logo-height       : 160px;
+    $logo-total-width  : 160px;
+    $logo-total-height : 160px;
+    $logo-image        : '/assets/images/sprite.fcb60fb4.png';
+    $logo              : (0px, 0px, 0px, 0px, 160px, 160px, 160px, 160px, '/assets/images/sprite.fcb60fb4.png', 'logo', );
+
+  $spritesheet-width   : 160px;
+  $spritesheet-height  : 160px;
+  $spritesheet-image   : '/assets/images/sprite.fcb60fb4.png';
+  $spritesheet-sprites : ($logo, );
+  $spritesheet         : (160px, 160px, '/assets/images/sprite.fcb60fb4.png', $spritesheet-sprites, );
+
+
+    @mixin sprite-width($sprite) {
+      width: nth($sprite, 5);
+    }
+
+    @mixin sprite-height($sprite) {
+      height: nth($sprite, 6);
+    }
+
+    @mixin sprite-position($sprite) {
+      $sprite-offset-x: nth($sprite, 3);
+      $sprite-offset-y: nth($sprite, 4);
+      background-position: $sprite-offset-x  $sprite-offset-y;
+    }
+
+    @mixin sprite-image($sprite) {
+      $sprite-image: nth($sprite, 9);
+      background-image: url(#{$sprite-image});
+    }
+
+    @mixin sprite($sprite) {
+      @include sprite-image($sprite);
+      @include sprite-position($sprite);
+      // @include sprite-width($sprite);
+      // @include sprite-height($sprite);
+    }
+
+
+    @mixin sprites($sprites) {
+      @each $sprite in $sprites {
+        $sprite-name: nth($sprite, 10);
+
+        .sp.sp-#{$sprite-name} {
+          display: inline-block;
+          width: nth($sprite, 5);
+          height: nth($sprite, 6);
+
+          &:before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            @include sprite($sprite);
+          }
+        }
+      }
+    }

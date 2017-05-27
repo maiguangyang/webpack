@@ -1,3 +1,4 @@
+const array               = require('lodash/array');
 const webpack             = require('webpack');
 const HtmlwebpackPlugin   = require('html-webpack-plugin');
 const CleanWebpackPlugin  = require('clean-webpack-plugin');
@@ -7,8 +8,32 @@ const {
   APP_PATH,
   DIST_PATH,
   WEBPACK_PATH,
-  HAPPYPACK_PATH
+  HAPPYPACK_PATH,
+  DOMAIN_MODULES,
 }                       = require('./config');
+
+
+/**
+ * 输出html模板文件
+ */
+let moduleList      = [];
+let HtmlPluginList  = [];
+
+DOMAIN_MODULES.forEach((elem) => {
+  if ('' != elem.path) {
+    moduleList.push(elem.path);
+  }
+});
+
+moduleList.forEach(function (elem) {
+  HtmlPluginList.push(new HtmlwebpackPlugin({
+    template      : `${APP_PATH}/${elem}/index.jade`,
+    inject        : 'body',
+    filename      : `${elem}_temp.html`,
+    excludeChunks : array.without(moduleList, elem),
+    // chunks        : [`${elem}`],
+  }));
+});
 
 module.exports = {
   entry: {
@@ -23,6 +48,15 @@ module.exports = {
   },
   externals: {
 
+  },
+  module: {
+    rules: [
+      {
+        test    : /\.jade$/,
+        use     : ['jade-loader'],
+        include : APP_PATH,
+      }
+    ]
   },
   plugins: [
 
@@ -66,10 +100,10 @@ module.exports = {
     /**
      * 输出html模板文件
      */
-    new HtmlwebpackPlugin({
-      filename: `${DIST_PATH}/template.html`,
-      template: `${APP_PATH}/index.html`,
-      inject: 'body',
-    }),
-  ]
+    // new HtmlwebpackPlugin({
+    //   filename: `${DIST_PATH}/home_temp.html`,
+    //   template: `${APP_PATH}/home/index.jade`,
+    //   inject: 'body',
+    // }),
+  ].concat(HtmlPluginList)
 };
