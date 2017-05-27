@@ -3,13 +3,13 @@ const path = require('path');
 const DLIENT_PORT     = 1988;
 const DOMAIN_MODULES  = [
   {
-    domain  : 'www.myreact.com',
-    cdn     : 'cdn.myreact.com',
+    domain  : 'www.domain.com',
+    cdn     : 'cdn.domain.com',
     path    : 'home',
   },
   {
-    domain  : 'user.myreact.com',
-    cdn     : 'cdn1.myreact.com',
+    domain  : 'user.domain.com',
+    cdn     : 'cdn1.domain.com',
     path    : 'user',
   }
 ];

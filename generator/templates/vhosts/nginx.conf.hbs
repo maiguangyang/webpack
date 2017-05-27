@@ -10,7 +10,7 @@
 
       error_page 404 500 502 503 504 @fallback;
 
-      location / {
+      location = / {
         add_header Cache-Control "no-store, no-cache, private";
         try_files $uri /{{{domain path}}}.html;
         proxy_pass http://127.0.0.1:{{ ../proxyPort }}/{{{domain path}}}.html;
