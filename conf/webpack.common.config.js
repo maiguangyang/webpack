@@ -39,7 +39,10 @@ const config = {
           fallback: 'style-loader',
           use     : [
             {
-              loader: 'css-loader'
+              loader: 'css-loader',
+              options: {
+                minimize: process.env.DEVELOP ? false : true,
+              }
             },
             {
               loader: 'postcss-loader'
