@@ -6,7 +6,6 @@ const {
   ROOT_PATH,
   APP_PATH,
   DIST_PATH,
-  SRC_PATH,
 }                       = require('./config');
 
 const { plugins, entries }    = require('./webpack.plugins.config.js');
