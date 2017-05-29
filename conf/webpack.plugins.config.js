@@ -110,7 +110,7 @@ const entries   = {};
 let moduleList  = [];
 
 DOMAIN_MODULES.forEach((elem) => {
-  if ('' != elem.path) {
+  if ('' !== elem.path) {
     moduleList.push(elem.path);
   }
 });
